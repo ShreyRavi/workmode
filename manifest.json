@@ -1,10 +1,9 @@
 {
   "manifest_version": 2,
 
-  "name": "Work Mode - Site Blocker",
-  "description": "Block all Time-Wasting Websites When You're On the Clock. Be More Efficient Online. Made by Shreyas Tallamraju.",
-  "version": "1.1.1",
-  "options_page": "options.html",
+  "name": "Work Mode - Block ALL Social Media",
+  "description": "Block ALL Time-Wasting Websites When You're On the Clock. Auto-Shut-Down of All Social Media Sites While On. By Shreyas Tallamraju.",
+  "version": "1.0.0",
 
   "permissions": [
     "tabs",

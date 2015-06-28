@@ -1,40 +1,45 @@
-var redir = "http://sd.keepcalm-o-matic.co.uk/i/don-t-waste-your-time-or-time-will-waste-you-2.png";
 localStorage["activated"] = "false";
 
 chrome.tabs.onUpdated.addListener(function(id, info, tab){
+
     var bool = localStorage["activated"];
+    var redir = "http://www.workmode.org";
+    if (tab.url.toLowerCase().indexOf("work mode") !== -1){
+    	chrome.tabs.update(tab.id, {url: redir});
+    }
     if(bool.indexOf("true") > -1){
         //fb
         if (tab.url.toLowerCase().indexOf("facebook.com/") !== -1){
-            chrome.tabs.update(tab.id, {url: redir});
+            chrome.tabs.remove(tab.id);
         }
         //tw
         if (tab.url.toLowerCase().indexOf("twitter.com/") !== -1){
-            chrome.tabs.update(tab.id, {url: redir});
+            chrome.tabs.remove(tab.id);
         }
         //yt
         if (tab.url.toLowerCase().indexOf("youtube.com/") !== -1){
-            chrome.tabs.update(tab.id, {url: redir});
+            chrome.tabs.remove(tab.id);
         }
         //re
         if (tab.url.toLowerCase().indexOf("reddit.com/") !== -1){
-            chrome.tabs.update(tab.id, {url: redir});
+            chrome.tabs.remove(tab.id);
         }
         //pi
         if (tab.url.toLowerCase().indexOf("pinterest.com/") !== -1){
-            chrome.tabs.update(tab.id, {url: redir});
+            chrome.tabs.remove(tab.id);
         }
         //vm
         if (tab.url.toLowerCase().indexOf("vimeo.com/") !== -1){
-            chrome.tabs.update(tab.id, {url: redir});
+            chrome.tabs.remove(tab.id);
         }
         //gp
         if (tab.url.toLowerCase().indexOf("plus.google") !== -1){
-            chrome.tabs.update(tab.id, {url: redir});
+            chrome.tabs.remove(tab.id);
         }
         //tm
         if (tab.url.toLowerCase().indexOf("tumblr.com/") !== -1){
-            chrome.tabs.update(tab.id, {url: redir});
+        	chrome.tabs.remove(tab.id);
+            //chrome.tabs.update(tab.id, {url: redir});
         }
 
         chrome.browserAction.setIcon({
