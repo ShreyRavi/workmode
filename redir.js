@@ -16,13 +16,6 @@ chrome.tabs.onUpdated.addListener(function(id, info, tab){
         if (tab.url.toLowerCase().indexOf("youtube.com/") !== -1){
             chrome.tabs.update(tab.id, {url: redir});
         }
-        //xxx
-        if (tab.url.toLowerCase().indexOf("porn") !== -1){
-            chrome.tabs.update(tab.id, {url: redir});
-        }
-        if (tab.url.toLowerCase().indexOf("sex") !== -1){
-            chrome.tabs.update(tab.id, {url: redir});
-        }
         //re
         if (tab.url.toLowerCase().indexOf("reddit.com/") !== -1){
             chrome.tabs.update(tab.id, {url: redir});
