@@ -3,13 +3,12 @@
 
   "name": "Work Mode - Block ALL Social Media",
   "description": "Block ALL Time-Wasting Websites When You're On the Clock. Auto-Shut-Down of All Social Media Sites While On. By Shreyas Tallamraju.",
-  "version": "1.0.0",
+  "version": "2.0.0",
 
   "permissions": [
     "tabs",
-    "https://www.facebook.com/",
-    "http://www.facebook.com/",
-    "http://www.twitter.com/",
+    "<all_urls>",
+    "cookies",
     "storage"
   ], 
   "icons": {
@@ -17,7 +16,7 @@
   },
   "background": {
     "scripts": ["redir.js"],
-    "persistent": false
+    "persistent": true
   },
   "browser_action": {
     "default_icon": "icon.png",
