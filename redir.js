@@ -1,5 +1,5 @@
 //redir.js
-//Shreyas Tallaraju
+//Shrey Ravi
 //WorkMode 3 - Using Chrome Storage API + Custom URL Blocking
 
 //onupdated
