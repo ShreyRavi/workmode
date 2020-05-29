@@ -3,13 +3,12 @@
 
   "name": "Work Mode - Block ALL Social Media URL Block",
   "description": "Block ALL Time-Wasting Websites & Custom URL Blocking When You're On the Clock. Custom URL Block Extension. By Shreyas Tallamraju.",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "options_page": "options.html",
 
   "permissions": [
     "tabs",
     "<all_urls>",
-    "cookies",
     "storage"
   ], 
   "icons": {
