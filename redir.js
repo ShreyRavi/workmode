@@ -2,13 +2,41 @@
 //Shrey Ravi
 //WorkMode 3 - Using Chrome Storage API + Custom URL Blocking
 
-//onupdated
+//TODO: Make the length of settings dynamic
+//TODO: Refactor code to combine repeated code blocks
+
+let resetArray = [
+    "facebook.com/",
+    "twitter.com/",
+    "youtube.com/",
+    "reddit.com/",
+    "pinterest.com/",
+    "vimeo.com/",
+    "plus.google",
+    "tumblr.com/",
+    "instagram.com/",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+  ];
+
+/**
+ * Adds Chrome onUpdated listener that sense when to close the tab
+ */
 chrome.tabs.onUpdated.addListener(function(id, info, tab){
     chrome.storage.sync.get(['activated'], function(items) {
     var bool = items.activated;
     if(bool.indexOf("true") > -1){
         chrome.storage.sync.get({
-        option: ["facebook.com/","twitter.com/","youtube.com/","reddit.com/","pinterest.com/","vimeo.com/","plus.google","tumblr.com/","instagram.com/","","","","","","","","","","",""]
+        option: resetArray
         }, function(items) {
         var x;
         for(x = 1; x <= 20; x++){
@@ -35,7 +63,9 @@ chrome.tabs.onUpdated.addListener(function(id, info, tab){
     }  });
 });
 
-//onclicked
+/**
+ * Adds Chrome onClicked listener that sense when to close the tab
+ */
 chrome.browserAction.onClicked.addListener(function(tab) {
     chrome.storage.sync.get(['activated'], function(items) {
     bool = items.activated;
@@ -65,6 +95,9 @@ chrome.browserAction.onClicked.addListener(function(tab) {
     });
 });
 
+/**
+ * Adds Chrome onCreated listener that sense when to close the tab
+ */
 chrome.tabs.onCreated.addListener(function(tab){
     chrome.storage.sync.get(['activated'], function(items) {
     bool = items.activated;
@@ -92,6 +125,10 @@ chrome.tabs.onCreated.addListener(function(tab){
     }
     });
 });
+
+/**
+ * Adds Chrome onMoved listener that sense when to close the tab
+ */
 chrome.tabs.onMoved.addListener(function(id, info){
     chrome.storage.sync.get(['activated'], function(items) {
     bool = items.activated;
@@ -119,6 +156,10 @@ chrome.tabs.onMoved.addListener(function(id, info){
     }
     });
 });
+
+/**
+ * Adds Chrome onActivated listener that sense when to close the tab
+ */
 chrome.tabs.onActivated.addListener(function(info){
     chrome.storage.sync.get(['activated'], function(items) {
     bool = items.activated;
@@ -146,6 +187,10 @@ chrome.tabs.onActivated.addListener(function(info){
     }
     });
 });
+
+/**
+ * Adds Chrome onHighlighted listener that sense when to close the tab
+ */
 chrome.tabs.onHighlighted.addListener(function(info){
     chrome.storage.sync.get(['activated'], function(items) {
     bool = items.activated;
@@ -173,6 +218,10 @@ chrome.tabs.onHighlighted.addListener(function(info){
     }
     });
 });
+
+/**
+ * Adds Chrome onDetached listener that sense when to close the tab
+ */
 chrome.tabs.onDetached.addListener(function(id){
     chrome.storage.sync.get(['activated'], function(items) {
     bool = items.activated;
@@ -200,6 +249,10 @@ chrome.tabs.onDetached.addListener(function(id){
     }
     });
 });
+
+/**
+ * Adds Chrome onAttached listener that sense when to close the tab
+ */
 chrome.tabs.onAttached.addListener(function(id, info){
     chrome.storage.sync.get(['activated'], function(items) {
     bool = items.activated;
@@ -227,6 +280,10 @@ chrome.tabs.onAttached.addListener(function(id, info){
     }
     });
 });
+
+/**
+ * Adds Chrome onRemoved listener that sense when to close the tab
+ */
 chrome.tabs.onRemoved.addListener(function(id, info){
     chrome.storage.sync.get(['activated'], function(items) {
     bool = items.activated;
@@ -254,6 +311,10 @@ chrome.tabs.onRemoved.addListener(function(id, info){
     }
     });
 });
+
+/**
+ * Adds Chrome onReplaced listener that sense when to close the tab
+ */
 chrome.tabs.onReplaced.addListener(function(id, removedId){
     chrome.storage.sync.get(['activated'], function(items) {
     bool = items.activated;
@@ -281,6 +342,10 @@ chrome.tabs.onReplaced.addListener(function(id, removedId){
     }
     });
 });
+
+/**
+ * Adds Chrome onZoomChange listener that sense when to close the tab
+ */
 chrome.tabs.onZoomChange.addListener(function(info){
     chrome.storage.sync.get(['activated'], function(items) {
     bool = items.activated;
@@ -308,6 +373,10 @@ chrome.tabs.onZoomChange.addListener(function(info){
     }
     });
 });
+
+/**
+ * Adds Chrome onCreated listener that sense when to close the tab
+ */
 chrome.tabs.onCreated.addListener(function(id, info, tab){
     chrome.storage.sync.get(['activated'], function(items) {
     bool = items.activated;
