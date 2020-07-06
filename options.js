@@ -2,7 +2,6 @@
 //Shrey Ravi
 //WorkMode 3 - Using Chrome Storage API + Custom URL Blocking
 
-//TODO: Make the length of settings dynamic 
 let resetArray = [
   "facebook.com/",
   "twitter.com/",
