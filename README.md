@@ -1,5 +1,5 @@
 # [WorkMode Chrome Extension](http://www.workmode.org)
-WorkMode is a Google Chrome Extension that, when activated, auto-blocks ALL social media and custom URLs & keywords from opening. Over **20,000+** users and 4/5 stars from 70+ reviews on the [Chrome Web Store](http://www.workmode.org). 
+WorkMode is a Google Chrome Extension that, when activated, auto-blocks ALL social media and custom URLs & keywords from opening. Over **10,000+** users and 4/5 stars from 70+ reviews on the [Chrome Web Store](http://www.workmode.org). 
 
 <p align="center">
     <a href="https://youtu.be/6R35xH-R1r0">
