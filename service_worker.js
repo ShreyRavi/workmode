@@ -1,6 +1,11 @@
-//redir.js
+//service_worker.js
 //Shrey Ravi
-//WorkMode 3 - Using Chrome Storage API + Custom URL Blocking
+//WorkMode 3.0.2 - Using Chrome Storage API + Custom URL Blocking
+
+const storageCache = { count: 0 };
+const initStorageCache = chrome.storage.sync.get().then((items) => {
+  Object.assign(storageCache, items);
+});
 
 let resetArray = [
     "facebook.com/",
@@ -24,7 +29,7 @@ let resetArray = [
     "",
     ""
   ];
-
+ 
 /**
  * Adds Chrome onUpdated listener that senses when to close tabs
  */
@@ -44,24 +49,39 @@ chrome.tabs.onUpdated.addListener(function(id, info, tab) {
 
                         //case if URL is found in options, then remove!
                         if(tab.url.toLowerCase().indexOf(items.option[x-1]) !== -1){
-                            chrome.tabs.remove(tab.id);
+                            try {
+                                chrome.tabs.remove(id);
+                            }
+                            catch {
+                                console.log('Failed to remove tabId: '+ tab.url.toLowerCase());
+                            }
                         }
                     }
             });
-            chrome.browserAction.setIcon({
-                path: {
-                    38: "iconon.png"
-                },
-                tabId: tab.id
-            });
+            try {
+                chrome.action.setIcon({
+                    path: {
+                        38: "iconon.png"
+                    },
+                    tabId: id
+                });
+            }
+            catch {
+                // Note: This may be expected if a tab is removed already
+            }
         }
         else {
-            chrome.browserAction.setIcon({
-                path: {
-                    38: "icon.png"
-                },
-                tabId: tab.id
-            });
+            try {
+                chrome.action.setIcon({
+                    path: {
+                        38: "icon.png"
+                    },
+                    tabId: id
+                });
+            }   
+            catch {
+                // Note: This may be expected if a tab is removed already
+            }
         }  
     });
 });
@@ -70,13 +90,13 @@ chrome.tabs.onUpdated.addListener(function(id, info, tab) {
  * Adds function that senses when to update extension state to call in listeners
  */
 function updateIconState() {
-    chrome.storage.sync.get(['activated'], function(items) {
+    chrome.storage.sync.get(["activated"], function(items) {
         bool = items.activated;
         if(bool == null) {
             bool = "false";
         }
         if(bool.indexOf("true") > -1) {
-            chrome.browserAction.setIcon({
+            chrome.action.setIcon({
                 path: {
                     38: "iconon.png"
                 },
@@ -85,7 +105,7 @@ function updateIconState() {
             chrome.storage.sync.set({activated: "true",}, function() {});
         }
         else {
-            chrome.browserAction.setIcon({
+            chrome.action.setIcon({
                 path: {
                     38: "icon.png"
                 },
@@ -98,31 +118,40 @@ function updateIconState() {
 /**
  * Adds Chrome onClicked listener that senses when to update extension state
  * The key difference is this method has tabID: tab.id stored as well in the 
- * chrome.browserAction call
+ * chrome.action call
  */
-chrome.browserAction.onClicked.addListener(function(tab) {
+chrome.action.onClicked.addListener(function(tab) {
     chrome.storage.sync.get(['activated'], function(items) {
         bool = items.activated;
         if(bool == null) {
             bool = "false";
         }
         if(bool.indexOf("true") > -1) {
-
-            chrome.browserAction.setIcon({
-                path: {
-                    38: "icon.png"
-                },
-                tabId: tab.id
-            });
+            try {
+                chrome.action.setIcon({
+                    path: {
+                        38: "icon.png"
+                    },
+                    tabId: tab.id
+                });
+            }
+            catch {
+                console.log('Failed to remove tabId: '+ tab.url.toLowerCase());
+            }
             chrome.storage.sync.set({'activated': 'false'}, function() {});    
         }
         else {
-            chrome.browserAction.setIcon({
+            try {
+                chrome.action.setIcon({
                 path: {
                     38: "iconon.png"
                 },
                 tabId: tab.id
             });
+            }
+            catch {
+                console.log('Failed to remove tabId: '+ tab.url.toLowerCase());
+            }
             activated = true;
             chrome.storage.sync.set({'activated': 'true'}, function() {});  
         }
@@ -191,12 +220,5 @@ chrome.tabs.onReplaced.addListener(function(id, removedId){
  * Adds Chrome onZoomChange listener that senses when to update extension state
  */
 chrome.tabs.onZoomChange.addListener(function(info){
-    updateIconState();
-});
-
-/**
- * Adds Chrome onCreated listener that senses when to update extension state
- */
-chrome.tabs.onCreated.addListener(function(id, info, tab){
     updateIconState();
 });

@@ -1,8 +1,8 @@
 //options.js - file to hold the logic of the options saving
 //Shrey Ravi
-//WorkMode 3 - Using Chrome Storage API + Custom URL Blocking
+//WorkMode 3.0.2 - Using Chrome Storage API + Custom URL Blocking
 
-let resetArray = [
+resetArray = [
   "facebook.com/",
   "twitter.com/",
   "youtube.com/",
@@ -68,12 +68,22 @@ function reset() {
 	for(x = 1; x <= 20; x++){
 		document.getElementById('website'+x).value = resetArray[x-1];
 	}
+  // Update status to let user know options were saved.
+  var status = document.getElementById('status');
+  status.textContent = 'Options were reset to install configurations.';
+  setTimeout(function() {
+    status.textContent = '';
+  }, 750);
 }
 
 /**
  * Once page is loaded, load the localstorage options values
  */
 document.addEventListener('DOMContentLoaded', restore_options);
+
+/**
+ * If the reset button is properly rendered, attach a listener to activate reset logic
+ */
 var resetbtn = document.getElementById('reset');
 if(resetbtn) {
 	resetbtn.addEventListener('click',reset);
